@@ -1,32 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
-import AppContext from '../../context/AppContext'
+import styles from './Home.css'
 
-export default function Home() {
-    const { state, dispatch, getPost } = useContext(AppContext)
+import Banner from '../banner/Banner'
+import PostList from '../postList/PostList'
 
-    useEffect(() => {
-        getPost()
-    }, [])
-
-    console.log(state, ' statewwwwwweeeee')
+export default function Home(props) {
+    // console.log(props, ' propss')
     return (
-        <div>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
+        <div className={ styles.Home }>
+            <Banner />
+            <PostList { ...props }/>
         </div>
     )
 }

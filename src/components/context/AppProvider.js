@@ -10,15 +10,27 @@ export default function AppProvider(props) {
     const [ state, dispatch ] = useReducer(reducer, initialState )
 
     const getPost = () => {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(res => res)
             .then(res => {
-                dispatch({ type: 'GET_POST', payload: res.data})
+                dispatch({ type: 'SENDING_REQUEST' })
+                dispatch({ type: 'REQUEST_FINISHED' })
+                dispatch({ type: 'SET_POST', payload: res.data })
             })
+            .catch(err => console.log(err, ' errrr'))
+    }
+
+    const getSinglePost = (id) => {
+        axios.get(`http://localhost:5000/posts/${id}`)
+            .then(res => res)
+            .then(res => {
+                dispatch({ type: 'SET_SINGLE_POST', payload: res.data })
+            })
+            .catch(err => console.log(err, ' errrr'))
     }
 
     return (
-        <AppContext.Provider value={{ state, dispatch, getPost }}>
+        <AppContext.Provider value={{ state, dispatch, getPost, getSinglePost }}>
             { props.children }
         </AppContext.Provider>
     )

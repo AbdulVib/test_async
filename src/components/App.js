@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 import React, { useReducer } from "react";
 
 import styles from './App.css'
@@ -5,29 +7,30 @@ import styles from './App.css'
 //route
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+//context
 import AppProvider from "./context/AppProvider";
 
 //comps
 import Navbar from './pages/navbar/Navbar'
-import Banner from './pages/banner/Banner'
 
 //screens
 import Home from './pages/home/Home'
+import Post from './pages/post/Post'
 
 const App = () => {
 
   return (
     <div>
-      <BrowserRouter>
-        <AppProvider>
+      <AppProvider>
+        <BrowserRouter>
           <Navbar />
-          <Banner />
           <Switch>
             {/* <Route path="/todo" component={ TodoList }/> */}
+            <Route path="/:postId" component={ Post }/>
             <Route path="/" component={ Home }/>
           </Switch>
-        </AppProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AppProvider>
     </div>
   );
 };
