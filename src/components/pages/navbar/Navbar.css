@@ -1,0 +1,10 @@
+.Nav{
+    padding: 10px 0;
+    background: orange;
+}
+
+.Container{
+ max-width: 1200px;
+ padding: 0 16px;
+ margin: auto;
+}
